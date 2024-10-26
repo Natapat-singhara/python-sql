@@ -132,6 +132,7 @@ E3.bind('<Return>',Save) #ใส่ event=Note ในฟังก์ชั่น
 B1 = ttk.Button(T1,text='SAVE',command=Save)
 B1.pack(ipadx=20,ipady=10)
 
+
 ###############TAB2################
 
 header = ['ID','รายการ','ค่าใช้จ่าย','หมายเหตุ','วัน-เวลา']
@@ -159,11 +160,13 @@ def delete_table(event=None):
         if choice == True:
             delete_expense(ID)
             update_table()
+            messagebox.showinfo('แจ้งเตือน','ข้อมูลถูกลบเรียบร้อย')
     except Exception as e:
             print(e)
             messagebox.showwarning('แจ้งเตือน','กรุณาเลือกรายการที่ต้องการลบ')
 
 table.bind('<Delete>',delete_table)
+
 
 ############### UPDATE ################
 
@@ -217,7 +220,6 @@ def update_data(event=None):
             update_table() #อัพเดทข้อมูลใหม่ใน Table เสมอ
             # print(title_update , price_update , others_update)
             GUI2.destroy()
-            #ติด ยังแก้ไม่ได้ 5555
             
         
         B1 = ttk.Button(GUI2,text='SAVE',command=Edit_data)
@@ -229,6 +231,15 @@ def update_data(event=None):
             print(e)
             messagebox.showwarning('เลือกรายการ','กรุณาเลือกรายการที่ต้องการอัพเดท')
 
+########################## T2 ####################
+
+B1 = ttk.Button(T2,text='EDIT',command=update_data)
+B1.pack(ipadx=20,ipady=10)
+
+B2 = ttk.Button(T2,text='DELETE',command=delete_table)
+B2.pack(ipadx=20,ipady=10)
+
+########################## END T2 ####################
 
 table.bind('<Double-1>',update_data)
 
